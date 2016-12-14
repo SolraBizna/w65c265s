@@ -1,0 +1,24 @@
+.include "include/common.txt"
+
+; This is a very dumb, very simple test program
+
+.define kStompAddr $0300
+
+.BANK 0
+.ORG $0200
+.SECTION "!Start" FORCE
+        ; clear the accumulator
+        LDA #0
+        ; transfer the accumulator to X (since A is 0, this clears it)
+        TAX
+Loop:   ; Store the accumulator to kStompAddr+X
+        STA kStompAddr.W, X
+        ; Increment the accumulator
+        INA
+        ; Increment X
+        INX
+        ; If the last operation did not result in 0, loop again
+        BNE Loop
+        ; back to the monitor
+        RTL
+.ENDS

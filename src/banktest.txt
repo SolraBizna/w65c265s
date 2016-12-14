@@ -1,0 +1,21 @@
+.include "include/common.txt"
+
+.bank 0
+.section "!__test0"
+.db 0
+.ends
+
+.bank 1
+.section "!__test1"
+.db 0
+.ends
+
+.bank 2
+.section "!__test2"
+.db 0
+.ends
+
+.bank 3
+.section "!__test3"
+.db 0
+.ends

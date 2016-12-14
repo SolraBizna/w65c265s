@@ -1,0 +1,125 @@
+.MEMORYMAP
+SLOTSIZE $10000
+DEFAULTSLOT 0
+SLOT 0 $0000
+.ENDME
+.ROMBANKSIZE $10000
+.ROMBANKS 256
+
+.EMPTYFILL $C2
+
+.BANK 0
+
+.ORG $0000
+.SECTION "!__ZeroPage" SIZE 256 FORCE
+.DS 256, $C2
+.ENDS
+
+.ORG $0100
+.SECTION "!__StackPage" SIZE 256 FORCE
+.DS 256, $C2
+.ENDS
+
+.ORG $DF00
+.SECTION "!__MCUReg" SIZE 128 FORCE
+rPD0: .DB $C2 ; Port 0 Data Register
+rPD1: .DB $C2 ; Port 1 Data Register
+rPD2: .DB $C2 ; Port 2 Data Register
+rPD3: .DB $C2 ; Port 3 Data Register
+rPDD0: .DB $C2 ; Port 0 Data Direction Register
+rPDD1: .DB $C2 ; Port 1 Data Direction Register
+rPDD2: .DB $C2 ; Port 2 Data Direction Register
+rPDD3: .DB $C2 ; Port 3 Data Direction Register
+.DS 24, $C2 ; Port Replacement & Expansion (unused)
+; $DF20
+rPD4: .DB $C2 ; Port 4 Data Register
+rPD5: .DB $C2 ; Port 5 Data Register
+rPD6: .DB $C2 ; Port 6 Data Register
+rPD7: .DB $C2 ; Port 7 Data Register
+rPDD4: .DB $C2 ; Port 4 Data Direction Register
+rPDD5: .DB $C2 ; Port 5 Data Direction Register
+rPDD6: .DB $C2 ; Port 6 Data Direction Register
+rPCS7: .DB $C2 ; Port 7 Chip Select
+.DS 24, $C2 ; Reserved (unused)
+; $DF40
+rBCR: .DB $C2 ; Bus Control Register
+rSSCR: .DB $C2 ; System Speed Control Register
+rTCR: .DB $C2 ; Timer Control Register
+rTER: .DB $C2 ; Timer Enable Register
+rTIFR: .DB $C2 ; Timer Interrupt Flag Register
+rEIFR: .DB $C2 ; Edge Interrupt Flag Register
+rTIER: .DB $C2 ; Timer Interrupt Enable Register
+rEIER: .DB $C2 ; Edge Interrupt Enable Register
+rUIFR: .DB $C2 ; UART Interrupt Flag Register
+rUIER: .DB $C2 ; UART Interrupt Enable Register
+.DS 6, $C2 ; Reserved (unused)
+; $DF50
+rT0LL: .DB $C2 ; Timer 0 Latch Low
+rT0LH: .DB $C2 ; Timer 0 Latch High
+rT1LL: .DB $C2 ; Timer 1 Latch Low
+rT1LH: .DB $C2 ; Timer 1 Latch High
+rT2LL: .DB $C2 ; Timer 2 Latch Low
+rT2LH: .DB $C2 ; Timer 2 Latch High
+rT3LL: .DB $C2 ; Timer 3 Latch Low
+rT3LH: .DB $C2 ; Timer 3 Latch High
+rT4LL: .DB $C2 ; Timer 4 Latch Low
+rT4LH: .DB $C2 ; Timer 4 Latch High
+rT5LL: .DB $C2 ; Timer 5 Latch Low
+rT5LH: .DB $C2 ; Timer 5 Latch High
+rT6LL: .DB $C2 ; Timer 6 Latch Low
+rT6LH: .DB $C2 ; Timer 6 Latch High
+rT7LL: .DB $C2 ; Timer 7 Latch Low
+rT7LH: .DB $C2 ; Timer 7 Latch High
+rT0CL: .DB $C2 ; Timer 0 Counter Low
+rT0CH: .DB $C2 ; Timer 0 Counter High
+rT1CL: .DB $C2 ; Timer 1 Counter Low
+rT1CH: .DB $C2 ; Timer 1 Counter High
+rT2CL: .DB $C2 ; Timer 2 Counter Low
+rT2CH: .DB $C2 ; Timer 2 Counter High
+rT3CL: .DB $C2 ; Timer 3 Counter Low
+rT3CH: .DB $C2 ; Timer 3 Counter High
+rT4CL: .DB $C2 ; Timer 4 Counter Low
+rT4CH: .DB $C2 ; Timer 4 Counter High
+rT5CL: .DB $C2 ; Timer 5 Counter Low
+rT5CH: .DB $C2 ; Timer 5 Counter High
+rT6CL: .DB $C2 ; Timer 6 Counter Low
+rT6CH: .DB $C2 ; Timer 6 Counter High
+rT7CL: .DB $C2 ; Timer 7 Counter Low
+rT7CH: .DB $C2 ; Timer 7 Counter High
+; $DF70
+rACSR0: .DB $C2 ; UART 0 Control/Status Register
+rARTD0: .DB $C2 ; UART 0 Data Register
+rACSR1: .DB $C2 ; UART 1 Control/Status Register
+rARTD1: .DB $C2 ; UART 0 Data Register
+rACSR2: .DB $C2 ; UART 2 Control/Status Register
+rARTD2: .DB $C2 ; UART 0 Data Register
+rACSR3: .DB $C2 ; UART 3 Control/Status Register
+rARTD3: .DB $C2 ; UART 0 Data Register
+rPIBFR: .DB $C2 ; Parallel Interface Flag Register
+rPIBER: .DB $C2 ; Parallel Interface Enable Register
+rPIR2: .DB $C2 ; Parallel Interface Register 2
+rPIR3: .DB $C2 ; Parallel Interface Register 3
+rPIR4: .DB $C2 ; Parallel Interface Register 4
+rPIR5: .DB $C2 ; Parallel Interface Register 5
+rPIR6: .DB $C2 ; Parallel Interface Register 6
+rPIR7: .DB $C2 ; Parallel Interface Register 7
+; $DF7F
+; leave open DF80-DFBF (on-chip RAM) and DFCO-DFFF (which will be SRAM on ours)
+.ENDS
+
+; Monitor ROM stuff
+
+.ORG $E000
+.SECTION "!__MonROM" SIZE 8192 FORCE
+.DS 8192, $C2
+.ENDS
+
+.ORG $DEFC
+.SECTION "!__LowPowerSentinel" SIZE 4 FORCE
+.DS 4, $C2
+.ENDS
+
+.ORG $DF80
+.SECTION "!__MonInternalVars" SIZE 64 FORCE
+.DS 64, $C2
+.ENDS

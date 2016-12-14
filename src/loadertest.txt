@@ -1,0 +1,11 @@
+.include "include/common.txt"
+
+.BANK 0 SLOT 0
+.SECTION "!Test"
+.db "Hello World!", 0
+.ENDS
+
+.BANK 1 SLOT 0
+.SECTION "!Test2"
+.db "Hello Worlds!", 0
+.ENDS
