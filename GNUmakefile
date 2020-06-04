@@ -2,13 +2,13 @@ all: bin/loadertest.hex bin/stomp_low_memory.hex
 
 obj/%.o: src/%.txt $(wildcard include/*.txt)
 	@mkdir -p obj
-	wla-65816 -o $< $@
+	wla-65816 -o $@ $<
 
 bin/%.prog: obj/%.o
 	@mkdir -p bin
 	echo "[objects]" > src/$*.link
 	for f in $^; do echo $$f >> src/$*.link; done
-	wlalink -bdS src/$*.link $@
+	wlalink -b -d -S src/$*.link $@
 
 bin/%.hex: bin/%.prog bin/mks28
 	bin/mks28 < $< > $@ || (rm -f $@; false)
