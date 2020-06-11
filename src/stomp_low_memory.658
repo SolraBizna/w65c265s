@@ -1,4 +1,4 @@
-.include "include/common.txt"
+.include "include/common.inc"
 
 ; This is a very dumb, very simple test program
 

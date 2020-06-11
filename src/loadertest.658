@@ -1,4 +1,4 @@
-.include "include/common.txt"
+.include "include/common.inc"
 
 .BANK 0 SLOT 0
 .SECTION "!Test"

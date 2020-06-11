@@ -1,4 +1,4 @@
-.include "include/common.txt"
+.include "include/common.inc"
 
 .bank 0
 .section "!__test0"

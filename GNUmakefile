@@ -1,6 +1,6 @@
 all: bin/loadertest.hex bin/stomp_low_memory.hex
 
-obj/%.o: src/%.txt $(wildcard include/*.txt)
+obj/%.o: src/%.658 $(wildcard include/*.inc)
 	@mkdir -p obj
 	wla-65816 -o $@ $<
 
